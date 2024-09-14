@@ -259,6 +259,7 @@ class CarFragment : BaseFragment(), View.OnClickListener, OnResultCommandListene
         updateCarBodyView(carData)
     }
 
+    @Deprecated("super.onActivityCreated() deprecated")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         registerForContextMenu(findViewById(R.id.btn_wakeup))
@@ -475,7 +476,7 @@ class CarFragment : BaseFragment(), View.OnClickListener, OnResultCommandListene
             return
         }
 
-        val command = result[0].toInt()
+//        val command = result[0].toInt()
         val resCode = result[1].toInt()
         val resText = if (result.size > 2) result[2] else ""
         val cmdMessage = getSentCommandMessage(result[0])
@@ -611,8 +612,10 @@ class CarFragment : BaseFragment(), View.OnClickListener, OnResultCommandListene
             iv.setImageResource(R.drawable.ol_car_kianiro_grey)
         } else if (carData.sel_vehicle_image.startsWith("car_nrjkexperia")) {
             iv.setImageResource(R.drawable.ol_car_nrjkexperia)
+        } else if (carData.sel_vehicle_image.startsWith("car_nrjkribelle")) {
+            iv.setImageResource(R.drawable.ol_car_nrjkribelle) // TODO: Better Ribelle top view
         } else if (carData.sel_vehicle_image.startsWith("car_nrjk")) {
-            iv.setImageResource(R.drawable.ol_car_nrjkexperia) // TODO: Ribelle top view
+            iv.setImageResource(R.drawable.ol_car_nrjkribelle)
         } else {
             iv.setImageResource(getDrawableIdentifier(activity, "ol_" + carData.sel_vehicle_image))
         }
